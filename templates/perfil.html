@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Mi perfil{% endblock %}
+{% block content %}
+<h2 class="mb-3">Mi perfil</h2>
+<div class="card shadow-sm mb-4">
+  <div class="card-body">
+    <p><strong>Usuario:</strong> {{ current_user.username }}</p>
+    <p><strong>Correo:</strong> {{ current_user.email }}</p>
+    <p><strong>Rol:</strong> {{ current_user.role }}</p>
+    <p class="fs-4"><strong>Puntos disponibles:</strong> <span class="badge bg-warning text-dark">{{ current_user.points }}</span></p>
+  </div>
+</div>
+
+<h4>Historial de puntos</h4>
+<table class="table table-striped">
+  <thead>
+    <tr><th>Fecha</th><th>Tipo</th><th>Puntos</th><th>Detalle</th></tr>
+  </thead>
+  <tbody>
+    {% for h in historial %}
+    <tr>
+      <td>{{ h.created_at.strftime('%d/%m/%Y %H:%M') }}</td>
+      <td>{{ h.kind }}</td>
+      <td class="{{ 'text-success' if h.points > 0 else 'text-danger' }}">{{ '+' if h.points > 0 }}{{ h.points }}</td>
+      <td>{{ h.note }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="4" class="text-muted">Aún no tienes movimientos de puntos.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

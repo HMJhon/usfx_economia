@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}Panel administrativo{% endblock %}
+{% block content %}
+<h2 class="mb-4">Panel administrativo</h2>
+
+<div class="row mb-4">
+  <div class="col-md-4">
+    <div class="card text-center shadow-sm p-3">
+      <h5>Actividades</h5>
+      <p class="display-6">{{ total_actividades }}</p>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-center shadow-sm p-3">
+      <h5>Publicaciones</h5>
+      <p class="display-6">{{ total_publicaciones }}</p>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-center shadow-sm p-3">
+      <h5>Usuarios registrados</h5>
+      <p class="display-6">{{ usuarios|length }}</p>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex gap-2 mb-4">
+  <a href="{{ url_for('canjear_puntos') }}" class="btn btn-primary">Canjear puntos de un estudiante</a>
+  {% if current_user.is_rey() %}
+  <a href="{{ url_for('editar_avatar') }}" class="btn btn-outline-secondary">Editar avatar 3D</a>
+  {% endif %}
+</div>
+
+<h4>Usuarios y puntos</h4>
+<table class="table table-striped align-middle">
+  <thead>
+    <tr><th>Usuario</th><th>Correo</th><th>Rol</th><th>Puntos</th>{% if current_user.is_rey() %}<th>Cambiar rol</th>{% endif %}</tr>
+  </thead>
+  <tbody>
+    {% for u in usuarios %}
+    <tr>
+      <td>{{ u.username }}</td>
+      <td>{{ u.email }}</td>
+      <td><span class="badge {{ 'bg-dark' if u.role == 'el_rey' else ('bg-primary' if u.role == 'administrativo' else 'bg-secondary') }}">{{ u.role }}</span></td>
+      <td>{{ u.points }}</td>
+      {% if current_user.is_rey() %}
+      <td>
+        <form method="POST" action="{{ url_for('cambiar_rol', user_id=u.id) }}" class="d-flex gap-2">
+          <select name="role" class="form-select form-select-sm">
+            <option value="estudiante" {{ 'selected' if u.role == 'estudiante' }}>estudiante</option>
+            <option value="administrativo" {{ 'selected' if u.role == 'administrativo' }}>administrativo</option>
+            <option value="el_rey" {{ 'selected' if u.role == 'el_rey' }}>el_rey</option>
+          </select>
+          <button class="btn btn-sm btn-outline-primary">Guardar</button>
+        </form>
+      </td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

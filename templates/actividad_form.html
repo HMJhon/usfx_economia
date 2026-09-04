@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Nueva actividad{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-7">
+    <h3 class="mb-4">Nueva conferencia / taller / evento</h3>
+    <form method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label class="form-label">Título</label>
+        <input type="text" name="title" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Descripción</label>
+        <textarea name="description" class="form-control" rows="4" required></textarea>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Fecha</label>
+          <input type="text" name="event_date" class="form-control" placeholder="Ej: 15 de octubre, 2026">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Lugar</label>
+          <input type="text" name="place" class="form-control" placeholder="Ej: Auditorio FCEA">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Costo</label>
+          <input type="text" name="cost" class="form-control" placeholder="Gratuito / Bs 20">
+        </div>
+        <div class="col-md-6 mb-3">
+          <label class="form-label">Puntos por escanear QR</label>
+          <input type="number" name="points_value" class="form-control" value="10" min="1">
+        </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Beneficios</label>
+        <textarea name="benefits" class="form-control" rows="2" placeholder="Certificado, refrigerio, material, etc."></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Imagen (opcional)</label>
+        <input type="file" name="image" class="form-control" accept="image/*">
+      </div>
+      <button type="submit" class="btn btn-primary">Crear actividad y generar QR</button>
+    </form>
+  </div>
+</div>
+{% endblock %}

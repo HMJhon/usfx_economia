@@ -1,0 +1,93 @@
+:root {
+  --usfx-blue: #b82711;
+  --usfx-blue-light: #ba1313;
+  --usfx-gold: #f4c542;
+}
+
+body {
+  background-color: #f7f8fa;
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
+h1, h2, h3, h4, h5, .navbar-brand {
+  font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
+.navbar-usfx {
+  background-color: var(--usfx-blue);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.navbar-usfx .nav-link {
+  color: rgba(255,255,255,0.85);
+}
+
+.navbar-usfx .nav-link:hover {
+  color: var(--usfx-gold);
+}
+
+.hero-usfx {
+  background: linear-gradient(135deg, var(--usfx-blue), var(--usfx-blue-light));
+  color: #fff;
+}
+
+.feature-box {
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.card-hover {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.12) !important;
+}
+
+.card-img-top {
+  height: 190px;
+  object-fit: cover;
+}
+
+.card-img-placeholder {
+  height: 190px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #eef2f7, #dde5ee);
+  color: #9aa8ba;
+  font-size: 3rem;
+}
+
+.speech-bubble {
+  max-width: 420px;
+  min-height: 40px;
+  background: #fff;
+  border: 2px solid var(--usfx-gold);
+  border-radius: 16px;
+  padding: 12px 18px;
+  font-weight: 600;
+  color: var(--usfx-blue);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.btn-primary {
+  background-color: var(--usfx-blue-light);
+  border-color: var(--usfx-blue-light);
+}
+
+.btn-primary:hover {
+  background-color: var(--usfx-blue);
+  border-color: var(--usfx-blue);
+}
+
+.badge.bg-dark {
+  background-color: var(--usfx-blue) !important;
+}

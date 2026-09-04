@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}Editar avatar 3D{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-6">
+    <h3 class="mb-4">Personalizar avatar 3D · "El Rey"</h3>
+    <form method="POST" id="avatar-form">
+      <div class="mb-3">
+        <label class="form-label">Color primario</label>
+        <input type="color" name="color_primary" id="color_primary" class="form-control form-control-color" value="{{ avatar.color_primary }}">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Color secundario</label>
+        <input type="color" name="color_secondary" id="color_secondary" class="form-control form-control-color" value="{{ avatar.color_secondary }}">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Mensaje al escanear QR</label>
+        <input type="text" name="message_scan" id="message_scan" class="form-control" value="{{ avatar.message_scan }}">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Mensaje al compartir en redes</label>
+        <input type="text" name="message_share" class="form-control" value="{{ avatar.message_share }}">
+      </div>
+      <button type="submit" class="btn btn-primary">Guardar cambios</button>
+    </form>
+  </div>
+  <div class="col-md-6 text-center">
+    <h5>Vista previa</h5>
+    <div id="avatar-container" style="width:100%; height:400px;"></div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>
+  window.AVATAR_COLOR_PRIMARY = "{{ avatar.color_primary }}";
+  window.AVATAR_COLOR_SECONDARY = "{{ avatar.color_secondary }}";
+  window.AVATAR_MESSAGE = {{ avatar.message_scan|tojson }};
+  window.AVATAR_PREVIEW_MODE = true;
+</script>
+<script src="{{ url_for('static', filename='js/avatar3d.js') }}"></script>
+<script>
+  document.getElementById('color_primary').addEventListener('input', e => updateAvatarColors());
+  document.getElementById('color_secondary').addEventListener('input', e => updateAvatarColors());
+  function updateAvatarColors() {
+    if (window.setAvatarColors) {
+      window.setAvatarColors(
+        document.getElementById('color_primary').value,
+        document.getElementById('color_secondary').value
+      );
+    }
+  }
+</script>
+{% endblock %}

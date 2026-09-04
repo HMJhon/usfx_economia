@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}¡Puntos registrados!{% endblock %}
+{% block content %}
+<div class="text-center">
+  <h2>{{ actividad.title }}</h2>
+  {% if ganado %}
+    <p class="lead text-success">¡Ganaste {{ puntos }} puntos! Puntos totales: {{ current_user.points }}</p>
+  {% else %}
+    <p class="lead text-muted">{{ mensaje }}</p>
+  {% endif %}
+  <div id="avatar-container" class="mx-auto mb-3" style="width:100%; max-width:520px; height:420px;"></div>
+  <div id="speech-bubble" class="speech-bubble mx-auto"></div>
+  <a href="{{ url_for('actividades') }}" class="btn btn-primary mt-4">Ver más actividades</a>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js"></script>
+<script>
+  window.AVATAR_COLOR_PRIMARY = "{{ avatar.color_primary }}";
+  window.AVATAR_COLOR_SECONDARY = "{{ avatar.color_secondary }}";
+  window.AVATAR_MESSAGE = {{ mensaje|tojson }};
+</script>
+<script src="{{ url_for('static', filename='js/avatar3d.js') }}"></script>
+{% endblock %}

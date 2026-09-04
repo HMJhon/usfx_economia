@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Nueva publicación{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-7">
+    <h3 class="mb-4">Nueva publicación</h3>
+    <form method="POST" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label class="form-label">Fuente</label>
+        <select name="source" class="form-select">
+          <option value="facultad">Facultad</option>
+          <option value="centro_estudiantes">Centro de Estudiantes</option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Título</label>
+        <input type="text" name="title" class="form-control" required>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Contenido</label>
+        <textarea name="content" class="form-control" rows="5" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Imagen (opcional)</label>
+        <input type="file" name="image" class="form-control" accept="image/*">
+      </div>
+      <button type="submit" class="btn btn-primary">Publicar</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
