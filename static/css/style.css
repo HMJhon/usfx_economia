@@ -91,3 +91,20 @@ h1, h2, h3, h4, h5, .navbar-brand {
 .badge.bg-dark {
   background-color: var(--usfx-blue) !important;
 }
+.avatar-3d-wrap {
+  width: 100%;
+  max-width: 340px;
+  animation: avatar-float 2.4s ease-in-out infinite;
+}
+
+.avatar-3d-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 12px 18px rgba(11, 42, 74, 0.25));
+}
+
+@keyframes avatar-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+}

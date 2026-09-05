@@ -24,13 +24,11 @@
       <button type="submit" class="btn btn-primary">Guardar cambios</button>
     </form>
   </div>
-  <div class="col-md-6 text-center" style="margin-top: 20px;">
+  <div class="col-md-6 text-center">
     <h5>Vista previa</h5>
-    <div style="margin-top: 15px;">
-        <img src="/static/avatar.jpeg" alt="Mi Avatar" width="220" class="avatar-animado" style="border-radius: 12px;">
+    <div class="avatar-3d-wrap mx-auto">
+      <img src="{{ url_for('static', filename='avatar.jpeg') }}" alt="Avatar de la Facultad" class="avatar-3d-img">
     </div>
+  </div>
 </div>
-{% endblock %}
-
-{% block scripts %}
 {% endblock %}

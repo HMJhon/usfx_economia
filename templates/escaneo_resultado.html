@@ -8,31 +8,25 @@
   {% else %}
     <p class="lead text-muted">{{ mensaje }}</p>
   {% endif %}
-  <div id="avatar-container" class="mx-auto mb-3" style="width:100%; max-width:520px; height:420px;"></div>
+  <div class="avatar-3d-wrap mx-auto mb-3">
+   <img src="{{ url_for('static', filename='avatar.jpeg') }}" alt="Avatar de la Facultad" class="avatar-3d-img">
+  </div>
   <div id="speech-bubble" class="speech-bubble mx-auto"></div>
   <a href="{{ url_for('actividades') }}" class="btn btn-primary mt-4">Ver más actividades</a>
 </div>
 {% endblock %}
 
 {% block scripts %}
-{% extends "base.html" %}
-{% block title %}¡Puntos registrados!{% endblock %}
-{% block content %}
-<div class="text-center">
-    <h2>{{ actividad.title }}</h2>
-    {% if ganado %}
-        <p class="lead text-success">¡Ganaste {{ puntos }} puntos! Puntos totales: {{ current_user.points }}</p>
-    {% else %}
-        <p class="lead text-muted">{{ mensaje }}</p>
-    {% endif %}
-
-    <!-- Tu flamante avatar profesional -->
-    <div class="my-4">
-        <img src="/static/avatar.jpeg" alt="Avatar Profesional" width="220" style="border-radius: 12px; box-shadow: 0px 4px 15px rgba(0,0,0,0.3);">
-    </div>
-
-    <div>
-        <a href="{{ url_for('actividades') }}" class="btn btn-primary mt-4">Ver más actividades</a>
-    </div>
-</div>
+<script>
+  const bubble = document.getElementById('speech-bubble');
+  const mensaje = {{ mensaje|tojson }};
+  if (bubble && mensaje) {
+    let i = 0;
+    const typing = setInterval(function () {
+      bubble.textContent = mensaje.slice(0, i);
+      i++;
+      if (i > mensaje.length) clearInterval(typing);
+    }, 30);
+  }
+</script>
 {% endblock %}
